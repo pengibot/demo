@@ -5,41 +5,33 @@ class Application extends Component {
     constructor(props) {
         super(props);
 
-
-    }
-
-    UNSAFE_componentWillMount(props, state) {
-
-    }
-
-    componentDidMount(props, state) {
-        console.log("Mounted with", props, state);
-    }
-
-    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-
-    }
-
-    UNSAFE_componentWillUpdate(props, state) {
-        if(this.props.name !== props.name) {
-            // do something
+        this.state = {
+            count: 0,
+            overTen: false
         }
-
-
     }
 
-    componentDidUpdate(props, state) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.state.count > 10 && this.state.count !== prevState.count && !this.state.overTen) {
+            console.log("Updating over ten")
+            this.setState({overTen: true});
+        }
+    }
 
+    handleClick = () => {
+        this.setState({count: this.state.count + 1})
     }
 
     render() {
-
-        let name = "Nick";
+        let {count} = this.state;
 
         return (
             <div>
-                <h1>Hello, {name}</h1>
-                <span>This</span>
+                <h1>You clicked the button {count} times</h1>
+                {(this.state.overTen ? <h3>Beat high score of 10!</h3> : null)}
+                <span>
+                    <button onClick={(e) => this.handleClick()}>Click Me</button>
+                </span>
             </div>
         );
     }
