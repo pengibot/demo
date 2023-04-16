@@ -8,7 +8,7 @@ class Application extends Component {
 
     }
 
-    componentWillMount(props, state) {
+    UNSAFE_componentWillMount(props, state) {
 
     }
 
@@ -16,11 +16,11 @@ class Application extends Component {
         console.log("Mounted with", props, state);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
 
     }
 
-    componentWillUpdate(props, state) {
+    UNSAFE_componentWillUpdate(props, state) {
         if(this.props.name !== props.name) {
             // do something
         }
